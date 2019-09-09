@@ -1,7 +1,7 @@
 import React from "react";
-import todos from "./todos.js";
 import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
+import "./components/TodoComponents/Todo.css";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -11,16 +11,61 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos
+      list: [],
+      item: ""
     };
   }
 
+  handleChange = event => {
+    this.setState({ item: event.target.value });
+  };
+
+  addItem = event => {
+    let newObj = {
+      id: Date.now(),
+      name: this.state.item,
+      completed: false
+    };
+    this.setState({ list: [...this.state.list, newObj] });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.addItem(event, this.state);
+    this.setState({ item: "" });
+  };
+
+  toggleItem = item => {
+    this.setState({
+      list: this.state.list.map(cv => {
+        if (item === cv.name) {
+          return { ...cv, completed: !cv.completed };
+        }
+        return cv;
+      })
+    });
+  };
+
+  clearComplete = event => {
+    event.preventDefault();
+    this.setState({ list: this.state.list.filter(cv => !cv.completed) });
+  };
+
   render() {
     return (
-      <div>
+      <div className="header">
         <h2>Welcome to your Todo App!</h2>
-        <h3> Family Todo List</h3>
-        <TodoList todos={this.state.todos} />
+        <h3> Our Family Todo List</h3>
+        <TodoForm
+          list={this.state.list}
+          item={this.state.item}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          clearComplete={this.clearComplete}
+        />
+        <section>
+          <TodoList list={this.state.list} toggleItem={this.toggleItem} />
+        </section>
       </div>
     );
   }

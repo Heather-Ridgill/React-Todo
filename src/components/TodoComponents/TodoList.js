@@ -1,31 +1,22 @@
 import React from "react";
 import Todo from "./Todo.js";
 
-const TodoList = props => {
-  return (
-    <div className="My-List">
-      {props.list.map(item => (
-        <Todo key={item.id} item={item} toggleItem={props.toggleItem} />
-      ))}
-      <button className="clear-btn" onClick={props.clearPurchased}>
-        Clear Purchased
-      </button>
-    </div>
-  );
-};
-
-//     if(!todos.legnth) {
-//         return(
-//              <h4> Nothing to do.... yet! </h4>
-//     );
-// } else {
-//     return(
-//         <div>
-//             {todos.map(todo => {
-//                 return <Todo key={todo.id} todo={todo} />
-//             })}
-//         </div>
-//     )
-// }
+class TodoList extends React.Component {
+  render() {
+    return (
+      <div className="todoList">
+        {this.props.list.map(cv => {
+          return (
+            <Todo
+              todo={cv}
+              key={cv.id}
+              toggleItem={() => this.props.toggleItem(cv.name)}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+}
 
 export default TodoList;
