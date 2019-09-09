@@ -33,49 +33,61 @@ span {
 }
 
 .header {
-  display: flex;
+  /* display: flex; */
+  margin-left: 30%;
+  margin-top: 10%;
   justify-content: space-between;
   align-items: center;
 }
 h1 {
-  text-align: left;
+  text-align: center;
+  margin: 45px;
+  font-size: 25px;
 }
 
 .todoList {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 auto;
+  justify-content: flex-start;
+  width: 40%;
+  /* margin: 0 auto; */
 }
-.item {
+/* .item {
   background-color: #e64944;
-  width: 45%;
-  text-align: left;
-  margin: 4px 0;
-  padding-left: 8px;
-  cursor: pointer;
+  width: 20%; */
+/* text-align: left; */
+/* margin: 4px 0; */
+/* padding-left: 8px; */
+/* cursor: pointer;
+} */
+
+.todoItem {
+  background-color: #e64944;
+  margin: 25px;
 }
 
 .todoItem.complete {
-  background-color: #d17d7c;
+  /* width: 15%; */
   text-decoration: line-through;
+  cursor: pointer;
 }
 form {
   width: 50%;
-  display: flex;
+  /* display: flex; */
   justify-content: flex-end;
 }
 form > input {
   background-color: #2d2d37;
   border: 0;
   padding: 6px 0;
-  font-size: 1rem;
+  font-size: 15px;
+  /* text-align: center; */
   width: 240px;
   outline: 0;
   color: white;
   border-bottom: 1px solid #e64944;
   margin-right: 8px;
+  cursor: pointer;
 }
 
 button {
@@ -85,7 +97,6 @@ button {
   font-size: 16px;
   padding: 6px 14px;
 }
-
 input::placeholder {
   color: #e64944;
   opacity: 1;
